@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import { connect} from 'react-redux'
+import * as usuariosActions  from '../../actions/usuariosActions'
 
 class Usuarios extends Component {
-  constructor() {
-    super();
-    this.state = {
-      usuarios: []
-    };
+
+
+  componentDidMount() {
+
+   this.props.traerTodos()
+
   }
 
-  async componentDidMount() {
-    const respuesta = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    this.setState({
-      usuarios: respuesta.data
-    });
-  }
 
   ponerFilas = () =>
-    this.state.usuarios.map(usuario => (
+    this.props.usuarios.map(usuario => (
       <tr key={ usuario.id }>
         <td>{usuario.name}</td>
         <td>{usuario.email}</td>
@@ -29,7 +24,7 @@ class Usuarios extends Component {
 
   render() {
     return (
-      <div className="margen">
+      <div >
         <table className="tabla">
           <thead>
             <tr>
@@ -45,4 +40,8 @@ class Usuarios extends Component {
   }
 }
 
-export default Usuarios;
+const mapStatetoProps = (reducers) => {
+ return reducers.usuariosReducer;
+}
+
+export default connect(mapStatetoProps, usuariosActions)(Usuarios); // el primer parametro del conect resive, son todos los reducer que el provedor entrega al usuario, el usuario ( compoente )
