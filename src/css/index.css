@@ -1,33 +1,36 @@
 .margen {
-    margin: 100px;
-  }
-  
-  table {
-    width: 100%;
-    text-align: left;
-  }
-  
-  .table td {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-  
-  #menu {
-    background-color: #007bff;
-    padding: 20px;
-    font-size: 20px;
-  }
-  
-  #menu a {
-    color: white;
-    padding-right: 50px;
-  }
-  
-  body {
-    margin: 0;
-  }
+  margin: 100px;
+}
 
+table {
+  width: 100%;
+  text-align: left;
+}
 
-  .center {
-      text-align: center;
-  }
+.table td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#menu {
+  background-color: #007bff;
+  padding: 20px;
+  font-size: 20px;
+}
+
+#menu a {
+  color: white;
+  padding-right: 50px;
+}
+
+body {
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.rojo {
+  color: red;
+}

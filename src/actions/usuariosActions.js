@@ -19,7 +19,7 @@ export const traerTodos = () => async dispatch => {
     
     dispatch({
         type: ERROR,
-        payload: error.message
+        payload: 'Algo Salió mal, Intenta mas tarde.'
     })
   }
 };

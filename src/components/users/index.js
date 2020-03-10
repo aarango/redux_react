@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as usuariosActions from "../../actions/usuariosActions";
 
-import Spinner from '../General/Spinner'
-
+import Spinner from "../General/Spinner";
+import Fatal from "../General/Fatal";
+import Tabla from "./tabla";
 
 class Usuarios extends Component {
   componentDidMount() {
@@ -13,34 +14,23 @@ class Usuarios extends Component {
 
   ponerContenido = () => {
     if (this.props.cargango) {
-      return <Spinner />
+      return <Spinner />;
     }
 
-    return (
-      <table className="tabla">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Enlace</th>
-          </tr>
-        </thead>
-        <tbody>{this.ponerFilas()}</tbody>
-      </table>
-    );
+    if (this.props.error) {
+      return <Fatal mensaje={this.props.error} />; // Como Users es el Padre de Fatal, Capturo el error de URL y se lo envio al componente Fatal para que el lo pueda ver
+    }
+
+    return <Tabla usuarios={this.props.usuarios} />;
   };
 
-  ponerFilas = () =>
-    this.props.usuarios.map(usuario => (
-      <tr key={usuario.id}>
-        <td>{usuario.name}</td>
-        <td>{usuario.email}</td>
-        <td>{usuario.website}</td>
-      </tr>
-    ));
-
   render() {
-    return <div>{this.ponerContenido()}</div>;
+    return (
+      <div>
+        <h1>Usuarios</h1>
+        {this.ponerContenido()}
+      </div>
+    );
   }
 }
 
