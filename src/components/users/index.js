@@ -9,7 +9,9 @@ import Tabla from "./tabla";
 
 class Usuarios extends Component {
   componentDidMount() {
-    this.props.traerTodos();
+    if (!this.props.usuarios.length) {
+      this.props.traerTodos();
+    }
   }
 
   ponerContenido = () => {
@@ -21,10 +23,11 @@ class Usuarios extends Component {
       return <Fatal mensaje={this.props.error} />; // Como Users es el Padre de Fatal, Capturo el error de URL y se lo envio al componente Fatal para que el lo pueda ver
     }
 
-    return <Tabla usuarios={this.props.usuarios} />;
+    return <Tabla />;
   };
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Usuarios</h1>
@@ -34,8 +37,8 @@ class Usuarios extends Component {
   }
 }
 
-const mapStatetoProps = reducers => {
+const mapStateToProps = reducers => {
   return reducers.usuariosReducer;
 };
 
-export default connect(mapStatetoProps, usuariosActions)(Usuarios); // el primer parametro del conect resive, son todos los reducer que el provedor entrega al usuario, el usuario ( compoente )
+export default connect(mapStateToProps, usuariosActions)(Usuarios); // el primer parametro del conect resive, son todos los reducer que el provedor entrega al usuario, el usuario ( compoente )
